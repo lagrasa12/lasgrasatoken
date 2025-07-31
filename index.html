@@ -7,6 +7,47 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap');
+
+        /* MOBILE-FIRST: Ajustes por defecto para móviles */
+        html, body { font-size: 16px; box-sizing: border-box; }
+        body { min-width: 0; min-height: 100vh; }
+        .container { width: 100%; max-width: 100vw; padding-left: 1rem; padding-right: 1rem; }
+        h1, h2, h3, h4 { word-break: break-word; }
+        /* Animaciones pesadas y fondos solo en desktop */
+        .bg-particles, .matrix-rain { display: none; }
+        @media (min-width: 768px) {
+            .bg-particles, .matrix-rain { display: block; }
+            .container { max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+            .gradient-bg { background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #330000 100%); }
+            .web3-button { background: linear-gradient(45deg, #ff0000, #cc0000); border: 2px solid #ff0000; }
+            .web3-button:hover { background: linear-gradient(45deg, #cc0000, #990000); box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);}
+            .neon-text { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;}
+            .text-6xl, .text-8xl { font-size: 6rem;}
+            .pacman-menu { width: 60px; height: 60px;}
+            .slot-reel { height: 220px;}
+            .slot-symbol { height: 73.33px; font-size: 50px;}
+        }
+        /* Mobile-first */
+        .floating, .pulse-glow, .price-animate { animation-duration: 2s; }
+        .pacman, .pacman-menu { animation-duration: 1s; }
+        .game-container { width: 100% !important; height: 300px !important; }
+        .crypto-card { backdrop-filter: none; }
+        .neon-text { text-shadow: 0 0 5px #ff0000; }
+        .gradient-bg { background: #1a0000; }
+        .web3-button { background: #ff0000; box-shadow: none; }
+        .web3-button:hover { background: #cc0000; box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);}
+        .particle { display: none; }
+        .text-6xl, .text-8xl { font-size: 3rem; }
+        button, .crypto-card { min-height: 44px; touch-action: manipulation; }
+        .pacman-menu { width: 40px; height: 40px; }
+        .game-controls { font-size: 12px; padding: 8px 12px; }
+        .slot-reel { height: 150px;}
+        .slot-symbol { height: 50px; font-size: 30px;}
+        /* Reduce motion para accesibilidad */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important;}
+            .floating, .pulse-glow, .price-animate { animation: none;}
+        }
         
         .gradient-bg {
             background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #330000 100%);
@@ -756,69 +797,72 @@
             }
         }
     </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Grasa - The Ultimate Memecoin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap');
+        /* -- tu CSS original intacto -- */
+        /* ... (mantén todo tu CSS original aquí) ... */
+        /* -- ADAPTACIONES RESPONSIVE -- */
+        @media (max-width: 768px) {
+            .bg-particles, .matrix-rain { display: none; }
+            .gradient-bg { background: #1a0000; }
+            .floating, .pulse-glow, .price-animate { animation-duration: 2s; }
+            .crypto-card { backdrop-filter: none; }
+            .neon-text { text-shadow: 0 0 5px #ff0000; }
+            .web3-button { background: #ff0000; box-shadow: none; }
+            .web3-button:hover { background: #cc0000; box-shadow: 0 0 10px rgba(255, 0, 0, 0.3); }
+            .text-6xl, .text-8xl { font-size: 3rem; }
+            .pacman-menu { width: 40px; height: 40px; }
+            button, .crypto-card { min-height: 44px; touch-action: manipulation; }
+        }
+        @media (min-width: 768px) {
+            .gradient-bg { background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #330000 100%);}
+            .container { max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+        }
+    </style>
 </head>
 <body class="bg-black text-white font-inter matrix-bg">
     <!-- Animaciones de fondo -->
-    <div class="bg-particles" id="bgParticles"></div>
-    <div class="matrix-rain" id="matrixRain"></div>
+    <div class="bg-particles hidden md:block" id="bgParticles"></div>
+    <div class="matrix-rain hidden md:block" id="matrixRain"></div>
 
     <!-- Header -->
     <header class="fixed w-full top-0 z-50 bg-black/95 backdrop-blur-sm border-b border-red-500/50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <nav class="container mx-auto px-2 md:px-6 py-2 md:py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 bg-gradient-to-r from-red-600 to-red-800 rounded-full flex items-center justify-center text-2xl red-glow cursor-pointer" onclick="playSound('chomp')">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-red-600 to-red-800 rounded-full flex items-center justify-center text-2xl red-glow cursor-pointer" onclick="playSound('chomp')">
                     🧈
                 </div>
-                <span class="text-2xl font-orbitron font-bold neon-text">LA GRASA</span>
+                <span class="text-xl md:text-2xl font-orbitron font-bold neon-text">LA GRASA</span>
             </div>
-            
             <div class="hidden md:flex items-center space-x-4">
                 <button class="hover:scale-110 transition-transform" onclick="toggleDesktopMenu()">
                     <div class="pacman-menu w-10 h-10"></div>
                 </button>
             </div>
-            
             <!-- Desktop Menu Dropdown -->
             <div id="desktopMenu" class="hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-sm border-b border-red-500/50 z-40">
                 <div class="container mx-auto px-6 py-6">
                     <div class="grid md:grid-cols-4 lg:grid-cols-7 gap-6">
-                        <a href="#tokenomics" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link">
-                            <div class="text-2xl mb-2">📊</div>
-                            <div class="font-bold">Tokenomics</div>
-                        </a>
-                        <a href="#roadmap" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link">
-                            <div class="text-2xl mb-2">🗺️</div>
-                            <div class="font-bold">Roadmap</div>
-                        </a>
-                        <a href="#security" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link">
-                            <div class="text-2xl mb-2">🔒</div>
-                            <div class="font-bold">Seguridad</div>
-                        </a>
-                        <a href="#features" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link">
-                            <div class="text-2xl mb-2">⚡</div>
-                            <div class="font-bold">Características</div>
-                        </a>
-                        <a href="#whitepaper" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link">
-                            <div class="text-2xl mb-2">📖</div>
-                            <div class="font-bold">Whitepaper</div>
-                        </a>
-                        <a href="#tutorial" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link">
-                            <div class="text-2xl mb-2">🎯</div>
-                            <div class="font-bold">Cómo Comprar</div>
-                        </a>
-                        <a href="#minigames" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link">
-                            <div class="text-2xl mb-2">🎮</div>
-                            <div class="font-bold">Juegos</div>
-                        </a>
+                        <a href="#tokenomics" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link"><div class="text-2xl mb-2">📊</div><div class="font-bold">Tokenomics</div></a>
+                        <a href="#roadmap" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link"><div class="text-2xl mb-2">🗺️</div><div class="font-bold">Roadmap</div></a>
+                        <a href="#security" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link"><div class="text-2xl mb-2">🔒</div><div class="font-bold">Seguridad</div></a>
+                        <a href="#features" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link"><div class="text-2xl mb-2">⚡</div><div class="font-bold">Características</div></a>
+                        <a href="#whitepaper" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link"><div class="text-2xl mb-2">📖</div><div class="font-bold">Whitepaper</div></a>
+                        <a href="#tutorial" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link"><div class="text-2xl mb-2">🎯</div><div class="font-bold">Cómo Comprar</div></a>
+                        <a href="#minigames" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-red-500/20 transition-all nav-link desktop-nav-link"><div class="text-2xl mb-2">🎮</div><div class="font-bold">Juegos</div></a>
                     </div>
                 </div>
             </div>
-            
-            <div class="flex items-center space-x-4">
-                <button id="langToggle" class="border border-red-500 px-3 py-1 rounded-full text-sm hover:bg-red-500 transition-all">
+            <div class="flex items-center space-x-2 md:space-x-4">
+                <button id="langToggle" class="border border-red-500 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm hover:bg-red-500 transition-all">
                     🇪🇸 ES
                 </button>
-                <button class="web3-button px-6 py-2 rounded-full font-bold buy-button">
+                <button class="web3-button px-4 md:px-6 py-2 rounded-full font-bold buy-button">
                     🔥 COMPRAR $GRASA
                 </button>
                 <button class="md:hidden" onclick="toggleMobileMenu()">
@@ -826,18 +870,17 @@
                 </button>
             </div>
         </nav>
-        
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="md:hidden bg-black/95 backdrop-blur-sm border-b border-red-500/50 hidden">
-            <div class="container mx-auto px-6 py-6 space-y-4">
-                <a href="#tokenomics" class="block py-2 text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">📊 Tokenomics</a>
-                <a href="#roadmap" class="block py-2 text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">🗺️ Roadmap</a>
-                <a href="#security" class="block py-2 text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">🔒 Seguridad</a>
-                <a href="#features" class="block py-2 text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">⚡ Características</a>
-                <a href="#whitepaper" class="block py-2 text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">📖 Whitepaper</a>
-                <a href="#tutorial" class="block py-2 text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">🎯 Cómo Comprar</a>
-                <a href="#minigames" class="block py-2 text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">🎮 Juegos</a>
-                <a href="#community" class="block py-2 text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">🚀 Comunidad</a>
+            <div class="container mx-auto px-2 md:px-6 py-4 md:py-6 space-y-3">
+                <a href="#tokenomics" class="block py-2 text-base md:text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">📊 Tokenomics</a>
+                <a href="#roadmap" class="block py-2 text-base md:text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">🗺️ Roadmap</a>
+                <a href="#security" class="block py-2 text-base md:text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">🔒 Seguridad</a>
+                <a href="#features" class="block py-2 text-base md:text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">⚡ Características</a>
+                <a href="#whitepaper" class="block py-2 text-base md:text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">📖 Whitepaper</a>
+                <a href="#tutorial" class="block py-2 text-base md:text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">🎯 Cómo Comprar</a>
+                <a href="#minigames" class="block py-2 text-base md:text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">🎮 Juegos</a>
+                <a href="#community" class="block py-2 text-base md:text-lg font-semibold hover:text-red-400 transition-colors nav-link mobile-nav-link">🚀 Comunidad</a>
                 <div class="pt-4 border-t border-red-500/30">
                     <button class="w-full web3-button py-3 rounded-full font-bold buy-button">
                         🔥 COMPRAR $GRASA
@@ -848,22 +891,19 @@
     </header>
 
     <!-- FOMO Banner -->
-    <div class="fixed top-20 left-0 right-0 z-40 bg-gradient-to-r from-red-600 to-orange-600 text-white py-2 px-4 text-center font-bold animate-pulse">
-        <div class="flex items-center justify-center space-x-4">
+    <div class="fixed top-20 left-0 right-0 z-40 bg-gradient-to-r from-red-600 to-orange-600 text-white py-2 px-2 md:px-4 text-center font-bold animate-pulse">
+        <div class="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4">
             <span>🔥 OFERTA LIMITADA:</span>
             <span id="fomoTimer">23:45:12</span>
             <span>para el próximo pump! 🚀</span>
-            <span class="ml-4">📈 +<span id="liveGain">247</span>% en 24h</span>
+            <span class="md:ml-4">📈 +<span id="liveGain">247</span>% en 24h</span>
         </div>
     </div>
 
     <!-- Live Activity Feed -->
-    <div class="fixed right-4 top-32 z-30 space-y-2" id="liveActivity">
-        <!-- Live notifications will appear here -->
-    </div>
-
-    <!-- Live Transaction Feed -->
-    <div class="fixed left-4 top-32 z-30 w-80 max-h-96 overflow-hidden hidden md:block" id="liveTransactionFeed">
+    <div class="fixed right-2 md:right-4 top-32 z-30 space-y-2" id="liveActivity"></div>
+    <!-- Live Transaction Feed Desktop -->
+    <div class="fixed left-2 md:left-4 top-32 z-30 w-full max-w-md md:w-80 max-h-96 overflow-hidden hidden md:block" id="liveTransactionFeed">
         <div class="bg-black/90 border-2 border-green-500 rounded-xl p-4 backdrop-blur-sm">
             <div class="flex items-center justify-between mb-3">
                 <div class="text-green-400 font-bold text-sm">🔴 LIVE TRANSACTIONS</div>
@@ -872,14 +912,11 @@
                     <span class="text-green-400 text-xs">LIVE</span>
                 </div>
             </div>
-            <div id="transactionList" class="space-y-2 max-h-80 overflow-y-auto">
-                <!-- Transactions will be populated here -->
-            </div>
+            <div id="transactionList" class="space-y-2 max-h-80 overflow-y-auto"></div>
         </div>
     </div>
-
-    <!-- Mobile Transaction Feed (Bottom) -->
-    <div class="fixed bottom-4 left-4 right-4 z-30 md:hidden" id="mobileTransactionFeed">
+    <!-- Live Transaction Feed Mobile (Bottom) -->
+    <div class="fixed bottom-2 left-2 right-2 z-30 md:hidden" id="mobileTransactionFeed">
         <div class="bg-black/90 border-2 border-green-500 rounded-xl p-3 backdrop-blur-sm">
             <div class="flex items-center justify-between mb-2">
                 <div class="text-green-400 font-bold text-xs">🔴 LIVE</div>
